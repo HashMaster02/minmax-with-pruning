@@ -20,7 +20,11 @@ class Game:
         else:
             self.current_player = self.player_1
 
+    def has_ended(self):
+        return self.board.check_win_conditions()
+
     def current_state(self):
         print(f"It is {self.current_player}'s turn. Select a move or type '0' to quit.")
         self.board.print_moves()
         self.board.print_board()
+
