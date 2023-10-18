@@ -30,6 +30,7 @@ class Board:
                 return self.get_position(x)
 
         if len(self.available_moves) == 0:
+            self.print_board()
             return 'Draw'
 
         return ''
