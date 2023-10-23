@@ -1,31 +1,17 @@
 import sys
-from Game_A20489853 import Game
+from GameSession_A20489853 import GameSession as Session
 
 if __name__ == "__main__":
 
-    playing = True
-    game = Game("X")
-    winner = ''
+    ALGO, FIRST, MODE = sys.argv[1], sys.argv[2], sys.argv[3]
+    print(f"last_name, first_name, AXXXXXXX solution: \n"
+          f"Algorithm: {ALGO} \n"
+          f"First: {FIRST} \n"
+          f"Mode: {MODE} \n")
 
-    while playing:
-        game.current_state()
-        selection = int(input("Play: "))
-        if selection == 0:
-            playing = False
-            break
-        game.play_move(selection)
-        winner = game.has_ended()
-        if winner != '':
-            break
-        print("___________________________________")
+    if int(MODE) == 0:
+        game = Session(FIRST)
+        results = game.ai_vs_ai(int(ALGO))
+        print(results)
 
-    if not playing:
-        print("You quit the game.")
-
-    else:
-        if winner == 'Draw':
-            print("The game was a draw.")
-        else:
-            print(f"{winner} wins!")
-
-# TODO: Make a function that chooses a random position to act as the placeholder for the AI
+# TODO: Fix print statements when the AI is making a move (see page 4 of assignment PDF)

@@ -31,7 +31,7 @@ class Board:
 
         if len(self.available_moves) == 0:
             self.print_board()
-            return 'Draw'
+            return 'TIE'
 
         return ''
 
