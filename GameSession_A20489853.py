@@ -1,5 +1,5 @@
 from Game_A20489853 import Game
-from AI_A20489853 import random_spot
+from AI_A20489853 import AI
 
 
 class GameSession:
@@ -9,45 +9,36 @@ class GameSession:
         self.in_session = True
         self.winner = ''
 
-    def human_vs_human(self):
-        while self.in_session:
-            self.game.current_state()
-            selection = int(input("Play: "))
-
-            if selection == 0:
-                self.in_session = False
-                break
-
-            self.game.play_move(selection)
-
-            self.winner = self.game.has_ended()
-            if self.winner != '':
-                break
-            print("___________________________________")
-
-        return self.results()
-
     def human_vs_ai(self, ai_algorithm):
 
+        bot = AI()
         if ai_algorithm == 0:
             while self.in_session:
-
                 # Human's turn
                 self.game.current_state()
                 selection = int(input("Play: "))
                 if selection == 0:
                     self.in_session = False
                     break
-                self.game.play_move(selection)
+
+                valid = self.game.play_move(selection)
+                if not valid:
+                    continue
+                self.game.next_player()
+
                 self.winner = self.game.has_ended()
                 if self.winner != '':
                     break
+
+                self.game.board.print_board()
                 print("___________________________________")
 
                 # AI's turn
-                self.game.current_state()
-                selection = random_spot(self.game.board.available_moves)
+                selection = bot.random_spot(self.game.board.available_moves)
                 self.game.play_move(selection)
+                print(f"{self.game.current_player}'s selected move: {selection}.")
+                self.game.next_player()
+
                 self.winner = self.game.has_ended()
                 if self.winner != '':
                     break
@@ -56,12 +47,16 @@ class GameSession:
             return self.results()
 
     def ai_vs_ai(self, ai_algorithm):
-
+        bot = AI()
         if ai_algorithm == 0:
             while self.in_session:
-                self.game.current_state()
-                selection = random_spot(self.game.board.available_moves)
+
+                selection = bot.random_spot(self.game.board.available_moves)
+                print(f"{self.game.current_player}'s selected move: {selection}.")
                 self.game.play_move(selection)
+                self.game.board.print_board()
+                self.game.next_player()
+
                 self.winner = self.game.has_ended()
                 if self.winner != '':
                     break
@@ -77,4 +72,3 @@ class GameSession:
                 return "TIE"
             else:
                 return f"{self.winner} WON!"
-

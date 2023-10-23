@@ -9,9 +9,12 @@ if __name__ == "__main__":
           f"First: {FIRST} \n"
           f"Mode: {MODE} \n")
 
-    if int(MODE) == 0:
+    if int(MODE) == 1:
+        game = Session(FIRST)
+        results = game.human_vs_ai(int(ALGO))
+        print(results)
+
+    elif int(MODE) == 2:
         game = Session(FIRST)
         results = game.ai_vs_ai(int(ALGO))
         print(results)
-
-# TODO: Fix print statements when the AI is making a move (see page 4 of assignment PDF)

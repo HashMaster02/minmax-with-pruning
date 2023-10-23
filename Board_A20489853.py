@@ -18,7 +18,6 @@ class Board:
             self.available_moves.remove(position)
             return True
         except ValueError:
-            print("___________________________________")
             print("Illegal move. Try again.")
             return False
 
@@ -43,10 +42,3 @@ class Board:
             print(r)
             if i != 2:
                 print("----+----+----")
-
-    def print_moves(self):
-        remaining = []
-        for move in self.available_moves:
-            if move != 0:
-                remaining.append(str(move))
-        print(f"Available Moves: {', '.join(remaining)}")

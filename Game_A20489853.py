@@ -12,7 +12,8 @@ class Game:
     def play_move(self, position: int):
         valid = self.board.make_move(position, self.current_player)
         if valid:
-            self.next_player()
+            return True
+        return False
 
     def next_player(self):
         if self.current_player == self.player_1:
@@ -24,7 +25,6 @@ class Game:
         return self.board.check_win_conditions()
 
     def current_state(self):
-        print(f"It is {self.current_player}'s turn. Select a move or type '0' to quit.")
-        self.board.print_moves()
+        print(f"{self.current_player}'s move. What is your move (possible moves at the moment are: "
+              f"{self.board.available_moves} | enter 0 to exit the game)?")
         self.board.print_board()
-
