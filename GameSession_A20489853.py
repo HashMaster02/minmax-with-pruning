@@ -7,7 +7,7 @@ class GameSession:
     def __init__(self, first_player):
         self.game = Game(first_player)
         self.in_session = True
-        self.winner = ''
+        self.winner = None
 
     def human_vs_ai(self, ai_algorithm):
 
@@ -16,6 +16,7 @@ class GameSession:
             while self.in_session:
                 # Human's turn
                 self.game.current_state()
+
                 selection = int(input("Play: "))
                 if selection == 0:
                     self.in_session = False
@@ -24,24 +25,25 @@ class GameSession:
                 valid = self.game.play_move(selection)
                 if not valid:
                     continue
-                self.game.next_player()
 
-                self.winner = self.game.has_ended()
-                if self.winner != '':
+                self.winner = self.game.has_ended(self.game.current_player)
+                if self.winner:
                     break
 
+                self.game.next_player()
                 self.game.board.print_board()
                 print("___________________________________")
 
                 # AI's turn
                 selection = bot.random_spot(self.game.board.available_moves)
+                # selection, nodes_searched = bot.min_max(self.game.current_player, self.game.board.game_board)
                 self.game.play_move(selection)
                 print(f"{self.game.current_player}'s selected move: {selection}.")
-                self.game.next_player()
 
-                self.winner = self.game.has_ended()
-                if self.winner != '':
+                self.winner = self.game.has_ended(self.game.current_player)
+                if self.winner:
                     break
+                self.game.next_player()
                 print("___________________________________")
 
             return self.results()
@@ -55,11 +57,11 @@ class GameSession:
                 print(f"{self.game.current_player}'s selected move: {selection}.")
                 self.game.play_move(selection)
                 self.game.board.print_board()
-                self.game.next_player()
 
-                self.winner = self.game.has_ended()
-                if self.winner != '':
+                self.winner = self.game.has_ended(self.game.current_player)
+                if self.winner is not None:
                     break
+                self.game.next_player()
                 print("___________________________________")
             return self.results()
 
@@ -68,7 +70,9 @@ class GameSession:
             return "You quit the game."
 
         else:
-            if self.winner == 'TIE':
+            if self.winner == "TIE":
                 return "TIE"
             else:
+                print("___________________________________")
+                self.game.board.print_board()
                 return f"{self.winner} WON!"

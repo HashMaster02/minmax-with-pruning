@@ -12,5 +12,9 @@ class AI:
     def min_max(self, game, board):
         pass
 
-    def min_max_pruning(self, game, board):
-        pass
+    # def min_max_pruning(self, game, board):
+    #     pass
+
+    def calculate_utility(self, player, remaining_moves):
+        constant = self.utility[player]
+        return constant * remaining_moves
