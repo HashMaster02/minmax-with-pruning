@@ -35,8 +35,7 @@ class GameSession:
                 print("___________________________________")
 
                 # AI's turn
-                selection = bot.random_spot(self.game.board.available_moves)
-                # selection, nodes_searched = bot.min_max(self.game.current_player, self.game.board.game_board)
+                (selection, value) = bot.min_max(self.game)
                 self.game.play_move(selection)
                 print(f"{self.game.current_player}'s selected move: {selection}.")
 
@@ -53,9 +52,9 @@ class GameSession:
         if ai_algorithm == 0:
             while self.in_session:
 
-                selection = bot.random_spot(self.game.board.available_moves)
-                print(f"{self.game.current_player}'s selected move: {selection}.")
+                (selection, value) = bot.min_max(self.game)
                 self.game.play_move(selection)
+                print(f"{self.game.current_player}'s selected move: {selection}.")
                 self.game.board.print_board()
 
                 self.winner = self.game.has_ended(self.game.current_player)

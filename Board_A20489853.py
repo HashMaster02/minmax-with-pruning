@@ -13,13 +13,17 @@ class Board:
     def make_move(self, position: int, player: str):
 
         try:
-            self.available_moves.index(position)
+            self.available_moves.index(position) # check if move is available
             self.game_board[(position - 1) // 3][(position % 3) - 1] = player
             self.available_moves.remove(position)
             return True
         except ValueError:
             print("Illegal move. Try again.")
             return False
+
+    def undo_move(self, position: int):
+        self.game_board[(position - 1) // 3][(position % 3) - 1] = ' '
+        self.available_moves.insert(position-1, position)
 
     def check_win_conditions(self, current_player):
         for (x, y, z) in self.winning_cells:

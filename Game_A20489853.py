@@ -15,6 +15,10 @@ class Game:
             return True
         return False
 
+    def undo_move(self, position: int):
+        self.board.undo_move(position)
+        self.next_player()
+
     def next_player(self):
         if self.current_player == self.player_1:
             self.current_player = self.player_2
