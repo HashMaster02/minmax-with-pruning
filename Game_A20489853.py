@@ -25,8 +25,8 @@ class Game:
         else:
             self.current_player = self.player_1
 
-    def has_ended(self, current_player):
-        return self.board.check_win_conditions(current_player)
+    def has_ended(self):
+        return self.board.check_win_conditions()
 
     def current_state(self):
         print(f"{self.current_player}'s move. What is your move (possible moves at the moment are: "

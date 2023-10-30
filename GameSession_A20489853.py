@@ -26,7 +26,7 @@ class GameSession:
                 if not valid:
                     continue
 
-                self.winner = self.game.has_ended(self.game.current_player)
+                self.winner = self.game.has_ended()
                 if self.winner:
                     break
 
@@ -39,7 +39,7 @@ class GameSession:
                 self.game.play_move(selection)
                 print(f"{self.game.current_player}'s selected move: {selection}.")
 
-                self.winner = self.game.has_ended(self.game.current_player)
+                self.winner = self.game.has_ended()
                 if self.winner:
                     break
                 self.game.next_player()
@@ -57,7 +57,7 @@ class GameSession:
                 print(f"{self.game.current_player}'s selected move: {selection}.")
                 self.game.board.print_board()
 
-                self.winner = self.game.has_ended(self.game.current_player)
+                self.winner = self.game.has_ended()
                 if self.winner is not None:
                     break
                 self.game.next_player()

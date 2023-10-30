@@ -5,7 +5,7 @@ class Board:
         self.game_board = [[' ', ' ', ' '],
                            [' ', ' ', ' '],
                            [' ', ' ', ' ']]
-        self.available_moves = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        self.available_moves = [1, 2, 3, 4, 5, 6, 7, 9, 8]
         self.winning_cells = [(1,2,3), (4,5,6), (7,8,9),
                               (1,4,7), (2,5,8), (3,6,9),
                               (1,5,9), (3,5,7)]
@@ -23,12 +23,16 @@ class Board:
 
     def undo_move(self, position: int):
         self.game_board[(position - 1) // 3][(position % 3) - 1] = ' '
-        self.available_moves.insert(position-1, position)
+        self.available_moves.append(position)
+        self.available_moves.sort()
 
-    def check_win_conditions(self, current_player):
+    def check_win_conditions(self):
         for (x, y, z) in self.winning_cells:
-            if self.get_position(x) == self.get_position(y) == self.get_position(z) == current_player:
-                return current_player
+            if (
+                self.get_position(x) == self.get_position(y) == self.get_position(z) == "X"
+                or self.get_position(x) == self.get_position(y) == self.get_position(z) == "O"
+                ):
+                return self.get_position(x)
 
         if len(self.available_moves) == 0:
             return 'TIE'
