@@ -1,5 +1,10 @@
 from Board_A20489853 import Board
 
+"""
+This class tracks the state of a single game i.e. who is X and O (player 1 and player 2), whose turn it is, 
+the current board state etc.
+"""
+
 
 class Game:
 

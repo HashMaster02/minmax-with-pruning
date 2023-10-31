@@ -1,3 +1,9 @@
+"""
+This class models the board for any tic tac toe game. It maintains the state of the board, the currently
+available moves, and functions to make and undo moves, check whether the game has ended (win or tie), and
+print the current board state.
+"""
+
 
 class Board:
 
