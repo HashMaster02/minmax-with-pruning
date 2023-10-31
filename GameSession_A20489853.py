@@ -14,7 +14,7 @@ class GameSession:
         bot = AI()
 
         # Using MinMax algorithm for AI
-        if ai_algorithm == 0:
+        if ai_algorithm == 1:
             while self.in_session:
                 # Human's turn
                 self.game.current_state()
@@ -52,7 +52,7 @@ class GameSession:
             return self.results()
 
         # Using MinMax with a-b Pruning algorithm for AI
-        elif ai_algorithm == 1:
+        elif ai_algorithm == 2:
             pass
 
     def ai_vs_ai(self, ai_algorithm):
@@ -60,13 +60,14 @@ class GameSession:
         bot = AI()
 
         # Using MinMax algorithm for AI
-        if ai_algorithm == 0:
+        if ai_algorithm == 1:
             while self.in_session:
 
                 (selection, value) = bot.min_max(self.game)
                 self.game.play_move(selection)
                 print(f"{self.game.current_player}'s selected move: {selection}. "
                       f"Number of search tree nodes generated: {bot.total_nodes}")
+                bot.total_nodes = 0
                 self.game.board.print_board()
 
                 self.winner = self.game.has_ended()
@@ -77,7 +78,7 @@ class GameSession:
             return self.results()
 
         # Using MinMax with a-b Pruning algorithm for AI
-        elif ai_algorithm == 1:
+        elif ai_algorithm == 2:
             pass
 
     def results(self):

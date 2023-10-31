@@ -4,9 +4,9 @@ from GameSession_A20489853 import GameSession as Session
 if __name__ == "__main__":
 
     # ALGO, FIRST, MODE = sys.argv[1], sys.argv[2], sys.argv[3]
-    ALGO = 0
+    ALGO = 1
     FIRST = "X"
-    MODE = 1
+    MODE = 2
     print(f"last_name, first_name, AXXXXXXX solution: \n"
           f"Algorithm: {ALGO} \n"
           f"First: {FIRST} \n"
