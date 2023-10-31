@@ -3,10 +3,11 @@ class AI:
 
     def __init__(self):
         self.utility = {'X': 1, 'O': -1, 'TIE': 0}
+        self.total_nodes = 0
 
 # TODO: Count the number of nodes generated
     def min_max(self, game):
-
+        self.total_nodes += 1
         # check terminal state
         is_winner = game.has_ended()
         if is_winner is not None:

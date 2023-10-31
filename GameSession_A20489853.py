@@ -39,7 +39,9 @@ class GameSession:
                 # AI's turn
                 (selection, value) = bot.min_max(self.game)
                 self.game.play_move(selection)
-                print(f"{self.game.current_player}'s selected move: {selection}.")
+                print(f"{self.game.current_player}'s selected move: {selection}. "
+                      f"Number of search tree nodes generated: {bot.total_nodes}")
+                bot.total_nodes = 0
 
                 self.winner = self.game.has_ended()
                 if self.winner:
@@ -63,7 +65,8 @@ class GameSession:
 
                 (selection, value) = bot.min_max(self.game)
                 self.game.play_move(selection)
-                print(f"{self.game.current_player}'s selected move: {selection}.")
+                print(f"{self.game.current_player}'s selected move: {selection}. "
+                      f"Number of search tree nodes generated: {bot.total_nodes}")
                 self.game.board.print_board()
 
                 self.winner = self.game.has_ended()
