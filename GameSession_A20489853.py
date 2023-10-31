@@ -12,6 +12,8 @@ class GameSession:
     def human_vs_ai(self, ai_algorithm):
 
         bot = AI()
+
+        # Using MinMax algorithm for AI
         if ai_algorithm == 0:
             while self.in_session:
                 # Human's turn
@@ -47,8 +49,15 @@ class GameSession:
 
             return self.results()
 
+        # Using MinMax with a-b Pruning algorithm for AI
+        elif ai_algorithm == 1:
+            pass
+
     def ai_vs_ai(self, ai_algorithm):
+
         bot = AI()
+
+        # Using MinMax algorithm for AI
         if ai_algorithm == 0:
             while self.in_session:
 
@@ -63,6 +72,10 @@ class GameSession:
                 self.game.next_player()
                 print("___________________________________")
             return self.results()
+
+        # Using MinMax with a-b Pruning algorithm for AI
+        elif ai_algorithm == 1:
+            pass
 
     def results(self):
         if not self.in_session:

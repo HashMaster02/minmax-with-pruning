@@ -6,12 +6,13 @@ class AI:
 
 # TODO: Count the number of nodes generated
     def min_max(self, game):
+
         # check terminal state
         is_winner = game.has_ended()
         if is_winner is not None:
             return None, self.calculate_utility(is_winner, game.board.available_moves)
 
-        # Max-player
+        # Max-Player (X) i.e. higher values are advantageous
         if game.current_player == "X":
             (move, value) = (None, -10000)
             for action in game.board.available_moves:
@@ -25,7 +26,7 @@ class AI:
 
             return move, value
 
-        # Min-player
+        # Min-Player (X) i.e. lower values are advantageous
         if game.current_player == "O":
             (move, value) = (None, 10000)
             for action in game.board.available_moves:
@@ -44,7 +45,7 @@ class AI:
 
     def calculate_utility(self, player, remaining_moves):
         """
-        The utility function below can vary, which can change the decision of the AI for certain board configurations.
+        The utility formula below can vary which can change the decision of the AI for certain board configurations.
         Try using one of these and see if you can notice a (subtle) difference.
 
         Formula 1: self.utility[player]
