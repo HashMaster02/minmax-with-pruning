@@ -138,6 +138,8 @@ class GameSession:
 
         else:
             if self.winner == "TIE":
+                print("___________________________________")
+                self.game.board.print_board()
                 return "TIE"
             else:
                 print("___________________________________")

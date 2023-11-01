@@ -50,6 +50,8 @@ class Board:
 
     def print_board(self):
         for i, r in enumerate(self.game_board):
-            print(r)
+            print(
+                f"  {r[0]}  |  {r[1]}  |  {r[2]}  "
+            )
             if i != 2:
-                print("----+----+----")
+                print("-----+-----+-----")
