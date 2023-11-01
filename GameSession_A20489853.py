@@ -142,4 +142,4 @@ class GameSession:
             else:
                 print("___________________________________")
                 self.game.board.print_board()
-                return f"{self.winner} WON!"
+                return f"{self.winner} WON!\n{"X's" if self.winner == "O" else "O"} LOST"
